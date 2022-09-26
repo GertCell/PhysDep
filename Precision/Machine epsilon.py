@@ -16,7 +16,7 @@ while a / 10 != a:
 
 print(a, i)
 
-print(1+e+e == 1)
+print(1+2*e+e == 1+2*e)
 
 # print()
 
