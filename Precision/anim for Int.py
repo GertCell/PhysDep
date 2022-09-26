@@ -1,7 +1,8 @@
 from numpy import *
 from matplotlib.pyplot import *
 # This code works only in jupyter notebook
-%matplotlib notebook
+# %matplotlib notebook
+
 
 def f(x):
     return 1 / (x ** 2 + 1)
