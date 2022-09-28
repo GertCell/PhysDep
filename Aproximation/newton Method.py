@@ -18,4 +18,15 @@ print(X, Y)
 # Ordinary polynom
 
 # P(x) = a0 + a1 (x1 - x0) +
+a = [0]*n
+a[0] = y[0]
+a[1] = (Y[1] - a[0])/ X[1]
+i = 3
+while i < n:
+
+    B = a[0] + a[1] * X[1]**2
+    B1 = B + a[i-1]*X[i-1]**2
+
+    a[i] = (y[i] - B1)/X[i]**2
+
 
