@@ -9,10 +9,10 @@ a = 0.5
 
 T = 1
 H = 1
-N = 50
+N = 500
 
 t = T/(N-1)
-h = H/(N-1)
+h = a*H/(N-1)
 X = [0]*N
 
 for i in range(0, N):
@@ -24,7 +24,6 @@ def wave():
     # Arrays
 
     U = [3] * N
-    UU = [0] * N
     U[0] = 5
     time = 0
 
@@ -35,16 +34,14 @@ def wave():
 
         # {запоминаем поле температуры на предыдущем слое по времени}
 
-        for i in range(0, N):
-            UU[i] = U[i]
+
+        UU = U
 
         for j in range(0, N):
             U[j] = UU[j] + a*t/h*(UU[j-1]-UU[j])
 
-        plt.axis([0, 1, 2.5, 6])
-        ax.set_title('Wave')
-        ax.set_xlabel('Distance')
-        ax.set_ylabel('Wave Speed')
+        plt.axis([0, 1, 2.5, 5])
+
         plt.plot(X, U)
         fig.canvas.draw()
         plt.show()
