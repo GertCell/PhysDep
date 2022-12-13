@@ -1,0 +1,46 @@
+import numpy as np
+from matplotlib import pyplot as plt
+
+q = 1 
+N = 200
+T = 2*np.pi
+a = [1, 0.002]
+w = [5.1, 25.5]
+
+def f(t):
+    return a[0]*np.sin(w[0]*t) + a[1]*np.sin(w[1]*t)
+
+def h(k, n, window):
+    if window == 'hannah':
+        return 0.5*(1-np.cos(2*np.pi*k/n))
+    if window == 'rectangular':
+        if k>=0 and k<n:
+            return 1
+
+def transformFourier(function, t, regime):
+    n = len(t)
+    y = []
+    w = []
+    for i in range (n):
+        buf = 0
+        for k in range (n):
+            buf += np.exp((2*np.pi*(1j)*k*i)/n) * function(t[k]) * h(k, n, regime)
+        y.append(buf)
+        w.append(2*np.pi*i/T)
+    return np.array((w)), np.array((y))
+
+t = np.linspace(0, T, N)
+w_h, han = transformFourier(f, t, regime = 'hannah')
+w_r, rec = transformFourier(f, t, regime = 'rectangular')
+
+plt.subplot(211)
+plt.xlabel('t - время')
+plt.ylabel('f(t)')
+plt.plot(t, f(t))
+plt.subplot(212)
+plt.xlabel('w - частота')
+plt.ylabel('Мощность')
+plt.plot(w_h, han, label = 'Окно Ханна')
+plt.plot(w_r, rec, label = 'Прямоугольное окно')
+plt.legend()
+plt.show()
