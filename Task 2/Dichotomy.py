@@ -13,25 +13,30 @@ def root():
 
     def f(x):
         c_0 = 1
-        return 1/(math.tan(sqrt(c_0*(1-x))))-sqrt(1/x-1)
+        return x**2 - 4
+
 
     print('write precision (k) and max number of iterations (n)')
     k = float(input())
     n = int(input())
-    a = 0.01
-    b = 0.7
+
+    a = 0
+
+    b = 10
+
+
     if f(a) * f(b) < 0:
         for i in range(1, n):
-            print(e)
-            if k < e:
-                if f((a + b) / 2) * f(b) < 0:
-                    a = (a + b) / 2
-                else:
-                    b = (a + b) / 2
-                print('current number of iterations =', n)
+
+            if f((a + b) / 2) * f(b) < 0:
+                a = (a + b) / 2
             else:
-                break
+                b = (a + b) / 2
+            print('current number of iterations =', i, (a + b) / 2)
+
+
     else:
+
         print('change range or function has not any roots')
     print('root =', (a + b) / 2)
 
